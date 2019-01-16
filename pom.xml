@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>spring-flowable</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring-flowable</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<flowable.version>6.4.1</flowable.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter-process</artifactId>
+		</dependency>
+
+		TODO-01 the starter above pulls in all flowable support (CMMN, DMN, REST API,...) but for now we will start with only the process engine using
+		the 'flowable-spring-boot-starter-process' dependency below that will auto configure the engine connecting to a h2 database in the
+		current spring boot setup (therefore you got scripts like: 'flowable.h2.create.engine.sql' but also for other databases
+		like mysl: 'flowable.mysql.create.engine.sql', ...
+
+		If you're interested click through on the 'flowable-spring-boot-starter-process' up to it's parent 'flowable-spring-boot-starters'
+		to see all the dependencies it pulls in:
+			<module>flowable-spring-boot-autoconfigure</module>
+			<module>flowable-spring-boot-starter-basic</module>
+			<module>flowable-spring-boot-starter-integration</module>
+			<module>flowable-spring-boot-starter-actuator</module>
+			<module>flowable-spring-boot-starter</module>
+			<module>flowable-spring-boot-starter-cmmn</module>
+			<module>flowable-spring-boot-starter-cmmn-rest</module>
+			<module>flowable-spring-boot-starter-dmn</module>
+			<module>flowable-spring-boot-starter-dmn-rest</module>
+			<module>flowable-spring-boot-starter-process</module>
+			<module>flowable-spring-boot-starter-process-rest</module>
+			<module>flowable-spring-boot-starter-app</module>
+			<module>flowable-spring-boot-starter-app-rest</module>
+			<module>flowable-spring-boot-starter-rest-api</module>
+			<module>flowable-spring-boot-starter-rest</module>
+		-->
+
+		<dependency>
+			<groupId>org.flowable</groupId>
+			<artifactId>flowable-spring-boot-starter-process</artifactId>
+			<version>${flowable.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

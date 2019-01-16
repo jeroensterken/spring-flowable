@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="definitions"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="Examples"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="
+             http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <!--
+    TODO-03 This is a simple process definition for a signup process, expressed in BPMN 2.0
+
+        This process expects 2 input process variables: ${customerId} & ${email}
+
+        https://www.flowable.org/docs/userguide/index.html#versioningOfProcessDefinitions
+        BPMN doesn’t have a notion of versioning. However, versions of process definitions are created in the Flowable engine as part of deployment:
+            - process definition id (in the XML file)
+                is used as the 'process definition key' property
+            - process definition name (in the XML file)
+                is used as the process definition 'name' property
+            - The id property is set to
+                {processDefinitionKey}:{processDefinitionVersion}:{generated-id}
+                ex. signup-process:1:0c374450-1999-11e9-a2d1-9cb6d0f84e13
+                , where generated-id is a unique number added to guarantee uniqueness of the process ID for the process definition caches
+                in a clustered environment.
+    -->
+    <process id="signup-process" name="signup-process name">
+
+        <startEvent id="start" flowable:initiator="initiator"/>
+
+        <sequenceFlow sourceRef="start" targetRef="confirm-email-task"/>
+
+        <userTask id="confirm-email-task" name="confirm-email-task name" flowable:assignee="${initiator}"/>
+
+        <sequenceFlow sourceRef="confirm-email-task" targetRef="send-welcome-email-task"/>
+
+        <serviceTask id="send-welcome-email-task" flowable:expression="#{emailService.sendWelcomeEmail(customerId, email)}"/>
+
+        <sequenceFlow sourceRef="send-welcome-email-task" targetRef="end"/>
+
+        <endEvent id="end"/>
+
+    </process>
+
+</definitions>
